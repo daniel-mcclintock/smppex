@@ -6,14 +6,14 @@ defmodule Smppex.Mixfile do
       app: :smppex,
       version: "0.1.9",
       elixir: "~> 1.0",
-      build_embedded: Mix.env == :prod,
-      start_permanent: Mix.env == :prod,
+      build_embedded: Mix.env() == :prod,
+      start_permanent: Mix.env() == :prod,
       deps: deps(),
       description: description(),
-      elixirc_paths: elixirc_paths(Mix.env),
+      elixirc_paths: elixirc_paths(Mix.env()),
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: [
-        "coveralls": :test,
+        coveralls: :test,
         "coveralls.detail": :test,
         "coveralls.post": :test,
         "coveralls.html": :test
@@ -23,8 +23,8 @@ defmodule Smppex.Mixfile do
         plt_file: ".local.plt",
         plt_add_deps: true,
         plt_add_apps: [:ssl],
-        flags: ["-Werror_handling", "-Wrace_conditions"],
-      ],
+        flags: ["-Werror_handling", "-Wrace_conditions"]
+      ]
     ]
   end
 
@@ -35,10 +35,10 @@ defmodule Smppex.Mixfile do
   defp deps do
     [
       {:excoveralls, "~> 0.5", only: :test},
-      {:dialyxir, "~> 1.3" , only: [:dev, :test], runtime: false},
+      {:dialyxir, "~> 1.3", only: [:dev, :test], runtime: false},
       {:earmark, "~> 1.4", only: :dev},
       {:ex_doc, "~> 0.39", only: :dev},
-      {:ranch, "~> 2.0"},
+      {:ranch, "~> 2.0"}
     ]
   end
 
@@ -60,6 +60,4 @@ defmodule Smppex.Mixfile do
       }
     ]
   end
-
-
 end
